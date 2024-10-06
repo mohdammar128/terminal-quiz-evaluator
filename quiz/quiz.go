@@ -6,24 +6,24 @@ import (
 
 type Stack struct {
 	size int
-	st   []int
+	st   []string
 }
 
-func (s *Stack) Push(val int) {
+func (s *Stack) Push(val string) {
 	s.st = append(s.st, val)
 	s.size++
 }
 
-func (s *Stack) Peek() (int, error) {
+func (s *Stack) Peek() (string, error) {
 	if s.Empty() {
-		return -1, errors.New("stack is empty")
+		return "-1", errors.New("stack is empty")
 	}
 	return s.st[len(s.st)-1], nil
 }
 
-func (s *Stack) Pop() (int, error) {
+func (s *Stack) Pop() (string, error) {
 	if s.Empty() {
-		return -1, errors.New("stack is empty")
+		return "-1", errors.New("stack is empty")
 	}
 
 	val, _ := s.Peek()
@@ -39,23 +39,16 @@ func (s *Stack) Size() int {
 }
 
 func NewStack() *Stack {
-	return &Stack{size: 0, st: []int{}}
+	return &Stack{size: 0, st: []string{}}
 }
 
 type Queue struct {
 	last  int
-	queue []int
+	queue []string
 	front int
 }
 
-// 3 ,4 ,4,5,6,7,8,9
-/*
-3 (f=0,l=0)
-4  f=0,l=1
-4  f=0 ,l=2
-
-*/
-func (q *Queue) Add(val int) {
+func (q *Queue) Add(val string) {
 	if q.front == -1 && q.last == -1 {
 		q.front++
 		q.last++
@@ -66,9 +59,9 @@ func (q *Queue) Add(val int) {
 	}
 
 }
-func (q *Queue) Poll() (int, error) {
+func (q *Queue) Poll() (string, error) {
 	if q.Empty() {
-		return -1, errors.New("Queue is Empry")
+		return "-1", errors.New("Queue is Empry")
 	}
 	val, _ := q.Peek()
 	q.front++
@@ -80,9 +73,9 @@ func (q *Queue) Poll() (int, error) {
 
 }
 
-func (q *Queue) Peek() (int, error) {
+func (q *Queue) Peek() (string, error) {
 	if q.Empty() {
-		return -1, errors.New("Queue is Empty")
+		return "-1", errors.New("Queue is Empty")
 	}
 	return q.queue[q.front], nil
 }
@@ -102,5 +95,5 @@ func (q *Queue) Size() int {
 }
 
 func NewQueue() *Queue {
-	return &Queue{last: -1, front: -1, queue: []int{}}
+	return &Queue{last: -1, front: -1, queue: []string{}}
 }
